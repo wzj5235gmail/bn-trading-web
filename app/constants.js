@@ -1,0 +1,1 @@
+export const fapiHost = "https://fapi.binance.com"
