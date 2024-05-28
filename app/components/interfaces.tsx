@@ -75,3 +75,9 @@ export enum TimeInForce {
   GTX = "GTX", // - Good Till Crossing 无法成为挂单方就撤销
   GTD = "GTD", // - Good Till Date 在特定时间之前有效，到期自动撤销
 }
+
+export interface CurrentOrder extends Order {
+  origQty: number
+  status: string
+  orderId: number
+};

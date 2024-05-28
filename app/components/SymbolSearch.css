@@ -1,0 +1,33 @@
+.fuzzy-search-container {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.results-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  width: calc(100% - 2px); /* Adjusting width to match input */
+  box-sizing: border-box;
+}
+
+.result-item {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.result-item:hover {
+  background-color: #f0f0f0;
+}

@@ -85,11 +85,11 @@ export default function Header() {
       </div>
       <div className="btc-price grid grid-cols-2">
         <div>Exposure</div>
-        <div className="text-red-600">{totalGains}</div>
+        <div className="text-red-600">{Number(totalGains).toFixed(2)}</div>
       </div>
       <div className="btc-price grid grid-cols-2">
         <div>Unrealized Profit</div>
-        <div className="text-red-600">{totalGains}</div>
+        <div className="text-red-600">{Number(totalGains).toFixed(2)}</div>
       </div>
     </div>
   );

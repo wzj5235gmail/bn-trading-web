@@ -29,6 +29,12 @@ ChartJS.register(
 );
 
 const BinanceChart = () => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const [klineData, setKlineData] = useState([]);
   const [openInterestData, setOpenInterestData] = useState([]);
   const [chartData, setChartData] = useState(null);
@@ -77,7 +83,7 @@ const BinanceChart = () => {
     };
 
     fetchData();
-  }, [interval]);
+  }, [interval, limit]);
 
   useEffect(() => {
     if (!isLoading && klineData.length && openInterestData.length) {
@@ -86,8 +92,8 @@ const BinanceChart = () => {
       const klineDataset = {
         label: "BTC价格",
         data: klineData.map((item) => item.close),
-        backgroundColor: "rgba(214, 81, 64, 1)",
-        borderColor: "rgba(214, 81, 64, 1)",
+        backgroundColor: "rgba(255,0,0,1)",
+        borderColor: "rgba(255,0,0,1)",
         borderWidth: 1,
         yAxisID: "y-axis-1",
         type: "line",
@@ -96,11 +102,11 @@ const BinanceChart = () => {
       const openInterestDataset = {
         label: "BTC合约持仓量",
         data: openInterestData.map((item) => item.openInterest),
-        backgroundColor: "rgba(82, 156, 83, 0.3)",
-        borderColor: "rgba(82, 156, 83, 0.3)",
+        backgroundColor: "rgba(0,0,255,1)",
+        borderColor: "rgba(0,0,255,1)",
         borderWidth: 1,
         yAxisID: "y-axis-2",
-        type: "bar",
+        type: "line",
       };
 
       setChartData({
@@ -117,6 +123,10 @@ const BinanceChart = () => {
   function handleIntervalChg(e) {
     const currInterval = e.target.value;
     switch (currInterval) {
+      case "1d":
+        setMyInterval("1d");
+        setLimit(30);
+        break;
       case "4h":
         setMyInterval("4h");
         setLimit(180);
@@ -136,6 +146,10 @@ const BinanceChart = () => {
     }
   }
 
+  if (!isMounted) {
+    return null;
+  }
+
   return (
     <div>
       <div className="flex gap-6">
@@ -144,6 +158,7 @@ const BinanceChart = () => {
           <option value="4h">4小时</option>
           <option value="15m">15分钟</option>
           <option value="1h">1小时</option>
+          <option value="1d">1天</option>
         </select>
       </div>
       {chartData && (
