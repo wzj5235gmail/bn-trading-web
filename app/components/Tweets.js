@@ -37,7 +37,7 @@ function Tweets() {
                 </div>
               </a>
               <div className="text-gray-400">
-                {new Date(tweet.createdAt).toLocaleString()}
+                {`${new Date(tweet.createdAt).toLocaleTimeString()} ${new Date(tweet.createdAt).toLocaleDateString()}`}
               </div>
             </div>
             <a href={twitter_href} target="_blank">
